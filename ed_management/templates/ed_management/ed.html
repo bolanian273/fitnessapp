@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+Extra Drill List
+{% endblock title %}
+
+{% block content %}
+<br> <h2 class="text-center"><u>Extra Drill Detail List</u></h2><br> 
+<div class="table-responsive">
+  
+  <div class="grid">           
+  <table class="table" style="background-color:white">
+    <thead class="table-dark">
+      <tr>
+        <th>C/No</th>
+        <th>Name</th>
+        <th>Entry</th>
+        <th>House</th>
+        <th>No. of ED's</th>
+        {% if request.user.Adju %}
+          <th>Increment</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+    {% if d %} 
+    {% for i in d %}
+    {% if i.ED_count > 0 %}
+    {% if i.house == 'JH' and request.user.JH or i.house == 'HH' and request.user.HH or i.house == 'SSH' and request.user.SSH or request.user.Adju %}
+      <tr>
+        <td>{{i.C_No}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.entry}}</td>
+        <td>{{i.house}}</td>
+        <td style="color:red; font-size: 21px;"><b>{{i.ED_count}}</b></td>
+        {% if request.user.Adju %}
+        <td width="2px" height="2px" colspan="3">
+        <form action="{% url 'ed_management:update' i.C_No %}" method="POST">
+          {% csrf_token %}
+          {{form|crispy}}
+          <!-- {% render_field form.ED_count %} -->
+          <button type="submit" class="btn btn-warning btn-sm mt-2">Update</button>
+         <!-- <a type="submit" class="btn btn-warning btn-sm" style="text-decoration:none; color:inherit;" href="{% url 'ed_management:update' i.C_No %}">Submit</a> -->
+        </form>
+        </td>
+        {% endif %}
+      </tr>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+

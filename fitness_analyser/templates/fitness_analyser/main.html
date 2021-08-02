@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Fitness List
+{% endblock title %}
+
+{% block content %}
+<br><h2 class="text-center"><u>Fitness Detail List</u></h2><br> 
+<div class="table-responsive">
+             
+  <table class="table" style="background-color:white">
+    <thead class="table-dark">
+      <tr>
+        <th>C/No</th>
+        <th>Name</th>
+        <th>Entry</th>
+        <th>House</th>
+        <th>Performance Avg</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- jinja2 Technique -->
+    {% if d %}  
+    {% for j in qs77 %}
+    {% for i in d %}
+    {% if i.house == 'JH' and request.user.JH or i.house == 'HH' and request.user.HH or i.house == 'SSH' and request.user.SSH or request.user.Adju %}
+      <tr>
+        <td>{{i.C_No}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.entry}}</td>
+        <td>{{i.house}}</td>
+        {% if i.Avg < j.Fitness_Standard_per %}
+        <td style = "color:red"><b>{{i.Avg}}</b></td>
+        {%else%}
+        <td>{{i.Avg}}</td>
+        {% endif %}
+        <td><a class="btn btn-warning btn-sm" href="{% url 'fitness_analyser:detail' i.C_No %}"> View Details</a></td>
+      </tr>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  </div>
+{% endblock content %}
+

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Extra Drill List
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="table-responsive">
+  <h2 class="text-center"><u>Extra Drill Detail List</u></h2><br>            
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>C/No</th>
+        <th>Name</th>
+        <th>Entry</th>
+        <th>House</th>
+        <th>No. of ED's</th>
+        <th>Increment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{df.C_No}}</td>
+        <td>{{df.name}}</td>
+        <td>{{df.entry}}</td>
+        <td>{{df.house}}</td>
+        <td>{{ed.ED_count}}</td>
+        <td width="2px" height="2px" colspan="3">
+        <form action="{% url 'ed_management:ED'%}" method="POST">
+          {% csrf_token %}
+          {{form|crispy}}
+          <button type="submit" class="btn btn-success btn-sm mt-1">Done</button>
+         <!-- <a type="submit" class="btn btn-warning btn-sm" style="text-decoration:none; color:inherit;" href="{% url 'ed_management:update' i.C_No %}">Submit</a> -->
+        </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {{df|safe}}
+</div>
+
+
+
+{% endblock content %}
+

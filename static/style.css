@@ -1,0 +1,54 @@
+.logo-sm {
+    height: 30px;
+    width: 30px;
+}
+.not-visible{
+    display: none;
+}
+
+.dz {
+    border-style: dashed;
+    border-radius: 5px;
+    border-color: #ddd;
+    transition: .5s;
+}
+
+.dz:hover{
+    background-color: #f5f5f5;
+}
+
+.dropzone {
+    border: 5px dashed red;
+    border-radius: 10px;
+    background: #f5f5f5;
+  }
+  
+  .dropzone i{
+    font-size: 5rem;
+  }
+  
+  .dropzone .dz-message {
+    color: rgba(0,0,0,.54);
+    font-weight: 500;
+    font-size: 27px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0px;
+    font-size: 12px;
+    background-color: darkgray;
+    color: black;
+    text-align: center;
+    
+  }
+  .grid {
+
+    display: grid;
+    place-items: center;
+    
+  }

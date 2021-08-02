@@ -1,0 +1,104 @@
+.not-visible{
+  display: none;
+}
+table {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+  table * {
+    position: relative;
+  }
+  table td,
+  table th {
+    padding-left: 8px;
+  }
+  table thead tr {
+    height: 60px;
+    background: #111111;
+    font-size: 16px;
+  }
+  table tbody tr {
+    height: 48px;
+    border-bottom: 1px solid #000000;
+  }
+  table tbody tr:last-child {
+    border: 0;
+  }
+  table td,
+  table th {
+    text-align: center;
+  }
+  table td.l,
+  table th.l {
+    text-align: right;
+  }
+  table td.c,
+  table th.c {
+    text-align: center;
+  }
+  table td.r,
+  table th.r {
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 35.5em) {
+      img{
+        max-width:100%;
+      }
+    table {
+      display: block;
+    }
+    table > *,
+  table tr,
+  table td,
+  table th {
+      display: block;
+    }
+    table thead {
+      display: none;
+    }
+    table tbody tr {
+      height: auto;
+      padding: 8px 0;
+    }
+    table tbody tr td {
+      padding-left: 45%;
+      margin-bottom: 12px;
+    }
+    table tbody tr td:last-child {
+      margin-bottom: 0;
+    }
+    table tbody tr td:before {
+      position: absolute;
+      font-weight: 700;
+      width: 40%;
+      left: 10px;
+      top: 0;
+    }
+    table tbody tr td:nth-child(1):before {
+      content: "C/No";
+    }
+    table tbody tr td:nth-child(2):before {
+      content: "Name";
+    }
+    table tbody tr td:nth-child(3):before {
+      content: "Entry";
+    }
+    table tbody tr td:nth-child(4):before {
+      content: "House";
+    }
+    table tbody tr td:nth-child(5):before {
+      content: "Performance Avg";
+    }
+  }
+
+  th{
+      color: white;
+  }

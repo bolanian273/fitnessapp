@@ -1,0 +1,52 @@
+{% load static %}
+{% url 'fitness_analyser:list' as path_to_fitness %}
+{% url 'fitness_analyser:upload' as path_to_upload %}
+{% url 'ed_management:ED' as path_to_ed %}
+{% url 'threshold_managment:TH' as path_to_th %}
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href=""><img src="{% static 'logo.png' %}" class="logo-sm"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbar">
+    {% if request.user%}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{path_to_fitness}}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == path_to_fitness%}active{% endif %}" href="{{path_to_fitness}}">Fitness</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == path_to_ed%}active{% endif %}" href="{{path_to_ed}}">Extra Drill</a>
+        </li>
+        {% if request.user.Adju %}
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == path_to_th%}active{% endif %}" href="{{path_to_th}}">Threshold Management</a>
+        </li>
+        {% endif %}
+        {% if request.user.Staff %}
+        <li class="nav-item">
+           <a class="nav-link {% if request.path == path_to_upload%}active{% endif %}" href="{{path_to_upload}}">Upload CSV</a> 
+        </li>
+        {% endif %}
+      </ul>
+      <div class="nav-item dropdown ms-auto">
+        <div class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        
+        <img src="{% static 'person.png' %}" >{{request.user}}
+      
+        </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{% url 'authorized_user:logout' %}">Logout</a></li>
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+<br>

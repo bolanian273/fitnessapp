@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block title %}
+The Fitness Threshold
+{% endblock title %}
+
+{% block content %}
+<h3 class="text-center"><span style="color: white;background-color: green;font-size: 30;width: 100%;">According to SOP approved by Worthy Comdt the minimum limit is 50  </span></h3>
+
+<br><h1 class="text-center"><u>Fitness Standard Setting</u></h1><br> 
+<div class="grid" style="margin-bottom: 30px;">
+    <table style="background-color:white; width: 50%;" border="2px solid black">
+    
+    <tr>
+      <th colspan="2" style="text-align: center;background-color: black; color: white;">
+          <h1>Current Value</h1>
+      </th>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="2" style="text-align: center; color:red;">
+        {% for t in th %}
+        <h2 style="font-size: 100px;">{{t.Fitness_Standard_per}}</h2>
+    {% endfor %}
+      </td>
+    </tr>
+    </table>
+</div>
+    <br><br>
+    <div class="grid" style="margin-bottom: 30px;">
+    <table style="background-color:white; width: 50%;" border="2px solid black">
+    <tr>
+      <form action="{% url 'threshold_managment:update' %}" method="POST">
+        {% csrf_token %}
+        <th style="background-color: black; color: white; text-align: center;">Enter New Value</th>
+        <td style="background-color:yellow;">{{form.Fitness_Standard_per|as_crispy_field}}</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center;"><button type="submit" class = "btn btn-sm btn-primary mt-1">Submit</button></td>
+      </tr>
+      </form>
+  </table>
+  </div>
+
+
+
+  
+{% endblock content %}
+
+{% comment %} <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-3">
+      
+      {% for t in th %}
+          <h1>{{t.Fitness_Standard_per}}</h1>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class = "row justify-content-center">
+    <div class = "col-3">
+        <form action="{% url 'threshold_managment:update' %}" method="POST">
+          {% csrf_token %}
+          <div class="container">
+          <div class = "row justify-content-center">
+            <div class="col">
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <table>
+            <tbody>
+            <label style="padding-left:19%"><b>Threshold Value<b></label>
+            <th>{{form|crispy}}</th>
+            <tr>
+            <td style="text-align: center"><button type="submit" class = "btn btn-sm btn-primary mt-3">Submit</button><td>
+            </tr>
+            </tbody>
+            </table>         
+          </div>
+          </div>
+          </div>
+        
+      </form>
+        <!-- <td>{% render_field form.Fitness_Standard_per|attr:"type:number"%}</td> -->
+    </div>
+  </div>
+</div> {% endcomment %}
+
